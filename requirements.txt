@@ -1,0 +1,16 @@
+# basics
+sklearn
+numpy
+tqdm
+pandas
+ipywidgets
+
+# explainers
+lime
+shap
+
+# learning methods
+torch
+torchvision
+xgboost
+thinc>=8.0.0a0
