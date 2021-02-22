@@ -4,13 +4,18 @@ numpy
 tqdm
 pandas
 ipywidgets
+fastapi
 
 # explainers
 lime
-shap
+#shap
+# experimental TFv2 support
+git+https://github.com/Zahlii/shap
 
-# learning methods
+
+# learning tools
 torch
 torchvision
 xgboost
 thinc>=8.0.0a0
+tensorflow # for Keras
