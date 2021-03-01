@@ -1,0 +1,145 @@
+:root {
+    --bg: #222222;
+    --fg: #ffffff;
+    --a1: #1c5d99;
+    --a2: #639fab;
+    --a3: #bbcde5;
+    --d1: #f46036;
+}
+
+
+body {
+    font-family: 'Space Mono', 'Courier New', Courier, monospace;
+    font-variant-ligatures: none;
+    background-color: var(--bg);
+    color: var(--fg);
+
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 25ch 1fr;
+}
+
+aside {
+    padding: 10px;
+}
+
+.aside__experiments {
+    padding-left: 0;
+    list-style: none;
+}
+
+.aside__experiment {
+    cursor: pointer;
+    color: var(--a1);
+    transition: color 0.1s cubic-bezier(0,0,0.3,1);
+}
+.aside__experiment:hover {
+    color: var(--a2);
+}
+
+main {
+    padding: 10px;
+}
+
+
+.loading-spinner {
+    position: fixed;
+    top: calc(50% - 20px);
+    left: calc(50% - 40px + 12.5ch);
+
+    height: 40px;
+    width: 40px;
+    border: 1px solid var(--a3);
+    border-left: 1px solid var(--bg);
+    border-radius: 20px;
+
+    animation: 1s loading linear 0s infinite;
+}
+@keyframes loading {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+dt {
+    font-style: italic;
+}
+
+dd, code {
+    color: var(--a2);
+}
+
+.accent-3 {
+    color: var(--a3);
+}
+
+.cols {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: stretch;
+}
+
+.col {
+    flex-grow: 1;
+}
+
+.graph-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.graph {
+    height: auto;
+    width:  300px;
+    /*background-color: var(--a1);*/
+    filter: hue-rotate(180deg) invert();
+    margin: 10px;
+}
+
+.graph:active {
+    height: 80vh;
+    width:  auto;
+    
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    padding: 50px;
+    background-color: #DDDDDD;
+    z-index: 50;
+}
+
+.epsilon_inp {
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    outline: 0;
+    font-family: 'Space Mono', 'Courier New', Courier, monospace;
+
+    color: var(--d1);
+}
+
+.epsilon_inp_valid {
+    color: var(--a2);
+}

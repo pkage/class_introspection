@@ -4,13 +4,18 @@ numpy
 tqdm
 pandas
 ipywidgets
-fastapi
+
+
+# explorer
+aiohttp[speedups]
+python-dotenv
+
 
 # explainers
 lime
 #shap
-# experimental TFv2 support
-git+https://github.com/Zahlii/shap
+# experimental TFv2 support for lime
+git+https://github.com/pkage/shap
 
 
 # learning tools

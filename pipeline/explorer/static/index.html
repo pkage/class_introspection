@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>class introspection explorer</title>
+        
+        <meta charset="UTF-8">
+
+        <link href="index.css" rel="stylesheet">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <div id="app">
+            <aside>
+                <p>Available experiments:</p>
+                <ul class="aside__experiments">
+                    <li
+                        class="aside__experiment"
+                        v-for="exp in experiment_list"
+                        v-on:click="show_experiment(exp, epsilon)"
+                        :key="exp">
+                        {{exp}}
+                    </li>
+                </ul>
+            </aside>
+            <main>
+                <div class="loading" v-if="loading">
+                    <div class="loading-spinner"></div>
+                </div>
+                
+                <div class="content" v-if="current !== null">
+                    <h1>Experiment Details</h1>
+
+                    <div class="cols">
+                        <div class="col">
+                            <h2>Overview</h2>
+
+                            <dl>
+                                <dt>File name</dt>
+                                <dd>{{ current.file_name }}</dd>
+
+                                <dt>Model name</dt>
+                                <dd>{{ current.model_name }}</dd>
+
+                                <dt>Model accuracy</dt>
+                                <dd>{{ Number(current.metrics.acc * 100).toFixed(2) }}%</dd>
+
+                                <dt>DBSCAN Epsilon</dt>
+                                <dd>
+                                <input class="epsilon_inp" type="text" name="" v-model="epsilon_inp" v-on:keyup="epsilon_inp_keyup" v-bind:class="{ epsilon_inp_valid }">
+                                </dd>
+
+                                <dt>Bridged pair</dt>
+                                <dd>{{ current.pair[0] }} &lArr; {{ current.pair[1] }}</dd>
+
+                                <dt>Time to compute explanations (CPU)</dt>
+                                <dd>{{ Math.floor(current.time / 60) }}m {{Math.floor(current.time % 60)}}s</dd>
+
+                                <dt>Time to compute clustering (CPU)</dt>
+                                <dd>{{ inflight }}ms</dd>
+                            </dl>
+
+                        </div>
+                        <div class="col">
+                            <h2>Variances</h2>
+
+                            <dl>
+                                <template v-for="(obj, key) in current.results"> 
+                                    <dt>Label {{key}} <span class="accent-3" v-if="key == current.pair[0]">(bridged)</span></dt>
+                                    <dd>{{ obj.variances.reduce((a,c) => a+c, 0) }}</dd>
+                                </template>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <h2>Cluster labels</h2>
+                    <div class="graph-grid">
+                        <img class="graph" v-for="(obj, key) in current.results" :src="prepare_img_url(key)" alt="graph for key">
+                    </div>
+                    
+
+                    <h2>Other</h2>
+                    <details>
+                        <summary>Raw response</summary>
+
+                        <code>
+                            <pre>{{ raw_response }}</pre>
+                        </code>
+                    </details>
+                    
+
+                    
+                    
+                    
+                </div>
+            </main>
+        </div>
+
+        <script src="js/vue.js" type="text/javascript"></script>
+        <script src="js/driver.js" type="text/javascript"></script>
+        
+    </body>
+</html>
