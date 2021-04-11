@@ -1,0 +1,6 @@
+**/.ipynb_checkpoints
+datasets/
+**/cache/
+*.pickle
+*.bak
+env_honours/

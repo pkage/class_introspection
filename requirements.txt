@@ -4,6 +4,7 @@ numpy
 tqdm
 pandas
 ipywidgets
+scipy
 
 
 # explorer
@@ -24,3 +25,4 @@ torchvision
 xgboost
 thinc>=8.0.0a0
 tensorflow # for Keras
+opencv-python

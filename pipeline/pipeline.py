@@ -71,6 +71,11 @@ def get_all_explanations(model, X):
     return shaps
 
 
+def select_explanations_for_label(explanations, y, label):
+    indices = y == label
+    return explanations[label][indices[:,0]]
+
+
 def cluster_explanations(explanations, indices, label, epsilon, pca_vals=5): 
     '''
     Cluster explanations using PCA and DBSCAN.
