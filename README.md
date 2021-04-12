@@ -32,3 +32,5 @@ Specifically, the Iris and LIME explorations are in `initial-explorations/Iris -
 The pipeline discussed in Chapter 5 can be found in the `pipeline/` directory.
 
 The web application discussed in Chapter 5 can be found in the `pipeline/explorer/` directory.
+
+Other experiments can be found in the `initial-explorations/` directory.
